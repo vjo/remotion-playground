@@ -4,7 +4,7 @@ import { Title } from './Title';
 
 export const FavoriteEmojis: React.FC<{
   name: string;
-  emojis: string[];
+  emojis: string[] | string;
 }> = ({ name, emojis }) => {
   const frame = useCurrentFrame();
   const videoConfig = useVideoConfig();
@@ -14,6 +14,7 @@ export const FavoriteEmojis: React.FC<{
     extrapolateRight: 'clamp',
   });
   const transitionStart = 20;
+  const emojisArray: string[] = typeof emojis === 'string' ? [emojis] : emojis;
 
   return (
     <div style={{ flex: 1, backgroundColor: 'white' }}>
@@ -22,7 +23,7 @@ export const FavoriteEmojis: React.FC<{
           <Title name={name} />
         </Sequence>
         <Sequence from={transitionStart} durationInFrames={Infinity}>
-          <Emojis emojis={emojis} />
+          <Emojis emojis={emojisArray} />
         </Sequence>
       </div>
     </div>
