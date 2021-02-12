@@ -1,4 +1,5 @@
 import { spring, useCurrentFrame, useVideoConfig } from 'remotion';
+import { Twemoji } from './Twemoji';
 
 export const Emojis: React.FC<{
   emojis: string[];
@@ -36,7 +37,7 @@ export const Emojis: React.FC<{
               display: 'inline-block',
             }}
           >
-            {emoji}
+            <Twemoji emoji={emoji} />
           </span>
         );
       })}
