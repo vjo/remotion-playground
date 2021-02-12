@@ -17,13 +17,10 @@ RUN apk add --no-cache \
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
   PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
 
-COPY package*.json ./
-COPY tsconfig.json ./
-COPY src src
-COPY *.ts .
-COPY *.tsx .
+# Copy local code to the container image.
+COPY . ./
 
-RUN npm i
+RUN yarn install
 
 # Add user so we don't need --no-sandbox.
 RUN addgroup -S pptruser && adduser -S -g pptruser pptruser \
