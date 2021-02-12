@@ -6,7 +6,7 @@ export const Title: React.FC<{
   const videoConfig = useVideoConfig();
   const frame = useCurrentFrame();
   const text = `${name}'s favorite emojis`;
-  const textArray = text.split(' ').map((t) => ` ${t} `);
+  const words = text.split(' ').map((t) => ` ${t} `);
   const opacity = interpolate(frame, [50, videoConfig.durationInFrames], [1, 0]);
 
   return (
@@ -22,14 +22,14 @@ export const Title: React.FC<{
         opacity,
       }}
     >
-      {textArray.map((t, i) => {
+      {words.map((word, i) => {
         return (
           <span
-            key={t}
+            key={word}
             style={{
               color: '#363636',
-              marginLeft: 10,
-              marginRight: 10,
+              marginLeft: 16,
+              marginRight: 16,
               transform: `scale(${spring({
                 fps: videoConfig.fps,
                 frame: frame - i * 5,
@@ -42,7 +42,7 @@ export const Title: React.FC<{
               display: 'inline-block',
             }}
           >
-            {t}
+            {word}
           </span>
         );
       })}
